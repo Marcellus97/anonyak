@@ -1,0 +1,22 @@
+{
+  "name": "anonyak",
+  "version": "1.0.0",
+  "description": "anonymous message board",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marcellus97/anonyak.git"
+  },
+  "author": "marcellus mohanna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marcellus97/anonyak/issues"
+  },
+  "homepage": "https://github.com/Marcellus97/anonyak#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
