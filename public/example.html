@@ -61,18 +61,34 @@
 
             /* posts */
             .post {
-                border-radius: 15px;
-                background-color: #ddda;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-evenly;
+
+                border-width: 50px;
+                border-color: #ddd;
+                border-style: solid;
+                background-color: #fffb;
                 color:black;
 
                 text-align: center;
-                display: block;
                 padding:25px;
                 font-family:"Roboto-Medium";
                 font-style: italic;
             }
             .postcontent {
                 font-size: 16px;
+            }
+            .postcontentcontainer {
+                width:80%;
+            }
+            .postbuttons {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+                width:20%;
             }
 
             .postname {
@@ -95,11 +111,8 @@
             .postvotes {
                 font-size: 48px;
             }
-            .upvote {
-                cursor: pointer;
-            }
-            .upvote.on {
-                color:red;
+            .upvotebutton {
+                height: 48px
             }
 
             /* ids */
@@ -111,7 +124,7 @@
                 filter:drop-shadow(0 0 2px black);
                 border-color: #ddd;
                 border-style: solid;
-                border-radius: 15px;
+                border-radius: 100px;
                 background-color: #ddd;
                 color:black;
 
@@ -129,6 +142,10 @@
             }
             #pinnedname {
                 font-size:16px;
+            }
+            #posts {
+                margin: auto;
+                width: 50%;
             }
             
 
@@ -186,14 +203,16 @@
 
             <div id="posts">
                 <div class="post">
-                    <p class="postcontent">Post content lollolololsldjflskjd</p>
-                    <p class="postname">- Saramomkey</p>
+                    <div class="postcontentcontainer">
+                        <p class="postcontent">Post content lollolololsldjflskjd</p>
+                        <p class="postname">- Saramomkey</p>
+                    </div>
                     <div class="postbuttons">
                         <button class="upvotebutton">Upvote</button>
-                        <button class="replybutton">Reply</button>
+                        <span class="postvotes">22</span>
+                        <!--<button class="replybutton">Reply</button>-->
                     </div>
 
-                    <span class="postvotes">22
                         <!--
                         <span class="upvote">
                             <svg width="36" height="36">
@@ -201,7 +220,6 @@
                               </svg>
                         </span>
                         -->
-                    </span>
                     <div class="reply">
                         <input placeholder="Enter reply text...">
                         <button class="replysubmitbutton">Submit</button>
