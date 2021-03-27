@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html>
     <head>
         <meta charset="utf-8" />
@@ -29,29 +29,108 @@
                 background-color: #323031;
                 padding:0;
                 margin:0;
-                overflow:hidden;
                 width: 100%;
             }
 
-            #backgroundimg {
-                top:0;
-                left:0;
-                position: fixed;
-                width: 100%;
-                z-index: -2;
-                filter: blur(2px) opacity(0.2);
-            }
 
             h1 {
+                text-align: center;
                 font-family: "Chango-Regular";
-                margin-top: 0;
+                margin: 0;
+                font-size: 48px;
+            }
+            .background {
+                top:0;
+                left:0;
                 width: 100%;
-                padding: 25px;
+                height: 100%;
+                background-image: url("images/mediumpixelpallette.png");
+                background-size:contain;
+                position: fixed;
+                filter: opacity(0.1)
+            }            
+            .foreground {
+                box-sizing: border-box;
+                position:absolute;
+                top:0;
+                left:0;
+                margin:auto;
+                width: 100%;
+                height: 100%;
             }
 
+            /* posts */
+            .post {
+                border-radius: 15px;
+                background-color: #ddda;
+                color:black;
+
+                text-align: center;
+                display: block;
+                padding:25px;
+                font-family:"Roboto-Medium";
+                font-style: italic;
+            }
+            .postcontent {
+                font-size: 16px;
+            }
+
+            .postname {
+                font-weight: bolder;
+                font-style: italic;
+            }
+
+            .reply {
+                display:none;
+            }
+
+            .replybutton {
+
+            }
+
+            .replysubmitbutton {
+
+            }
+            /* votes */
+            .postvotes {
+                font-size: 48px;
+            }
+            .upvote {
+                cursor: pointer;
+            }
+            .upvote.on {
+                color:red;
+            }
+
+            /* ids */
             #header {
                 color: white;
             }
+
+            #pinned {
+                filter:drop-shadow(0 0 2px black);
+                border-color: #ddd;
+                border-style: solid;
+                border-radius: 15px;
+                background-color: #ddd;
+                color:black;
+
+                text-align: center;
+                display: block;
+                width: 50%;
+                margin: auto;
+                padding:25px;
+                font-family:"Roboto-Medium";
+                font-style: italic;
+            }
+
+            #pinnedquote {
+                font-size:24px;
+            }
+            #pinnedname {
+                font-size:16px;
+            }
+            
 
             @font-face {
                 font-family: "Chango-Regular";
@@ -63,14 +142,73 @@
             }
         </style>
 
-        <script>
+        <script >
+            document.addEventListener("DOMContentLoaded", () => {
+                for (const btn of document.querySelectorAll('.upvote')) {
+                    btn.addEventListener('click', event => {
+                        event.currentTarget.classList.toggle('on');
+                    });
+                }
+
+                for (const btn of document.querySelectorAll('.replybutton')) {
+                    btn.addEventListener('click', event => {
+                        //
+                        let postParent = event.currentTarget.parentNode.parentNode;
+                        postParent.querySelector('.reply').style.display = "block";
+                        console.log(postParent);
+                    });
+                }
+
+                for (const btn of document.querySelectorAll('.replysubmitbutton')) {
+                    btn.addEventListener('click', event => {
+                        let replyparentdiv = event.currentTarget.parentNode;
+                        replyparentdiv.style.display = "none";
+                    });
+                }
+            });
+
         </script>
         
-        <img src="images/mediumpixelpallette.png" id="backgroundimg"/>
-        <div id="header">
-            <h1>ANONYAK</h1>
-            <p>this is some sample momkey text</p>
+        <div class="background"></div>
+        <div class="foreground">
+            <div id="header">
+                <h1>ANONYAK</h1>
+                <div id="pinned">
+                    <p id="pinnedquote">"Where's god? There is no god! alsjdflasjdlfjas asdljf alsd a;lsjd ;laj sdflja sdf"</p>
+                    <p id="pinnedname">- woman</p>
+                </div>
+            </div>
+            
+            <div id="create">
+                <input placeholder="Type post text...">
+                <button>Submit</button>
+            </div>
+
+            <div id="posts">
+                <div class="post">
+                    <p class="postcontent">Post content lollolololsldjflskjd</p>
+                    <p class="postname">- Saramomkey</p>
+                    <div class="postbuttons">
+                        <button class="upvotebutton">Upvote</button>
+                        <button class="replybutton">Reply</button>
+                    </div>
+
+                    <span class="postvotes">22
+                        <!--
+                        <span class="upvote">
+                            <svg width="36" height="36">
+                                <path d="M2 10h32L18 26 2 10z" fill="currentColor"></path>
+                              </svg>
+                        </span>
+                        -->
+                    </span>
+                    <div class="reply">
+                        <input placeholder="Enter reply text...">
+                        <button class="replysubmitbutton">Submit</button>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div>Posts</div>
     </body>
 </html>
